@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
@@ -11,6 +8,7 @@
         <TextField fx:id="searchField" promptText="Search by street"/>
         <Button text="Search" onAction="#handleSearch"/>
         <Button text="Add New" onAction="#showAddAddress"/>
+        <Button text="Delete Selected" onAction="#handleDelete"/>
     </HBox>
     <TableView fx:id="addressTable" prefHeight="475">
         <columns>

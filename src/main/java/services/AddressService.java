@@ -6,6 +6,7 @@ import org.hibernate.Transaction;
 import util.HibernateUtil;
 
 import java.util.List;
+import java.util.UUID;
 
 public class AddressService {
 
@@ -27,6 +28,26 @@ public class AddressService {
             Transaction transaction = session.beginTransaction();
             session.persist(address);
             transaction.commit();
+        }
+    }
+
+    public void deleteAddress(UUID addressId) {
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getSession()) {
+            transaction = session.beginTransaction();
+
+            // Find the address by ID
+            Address address = session.get(Address.class, addressId);
+            if (address != null) {
+                session.remove(address); // Remove the address from the session
+            }
+
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback(); // Rollback if an error occurs
+            }
+            throw e; // Re-throw the exception
         }
     }
 }

@@ -8,10 +8,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -84,6 +81,31 @@ public class DriversController {
             alert.setHeaderText(null);
             alert.setContentText("Could not load the add order dialog.");
             alert.showAndWait();
+        }
+    }
+
+    public void handleDelete() {
+        Driver selectedDriver = driverTable.getSelectionModel().getSelectedItem();
+
+        if (selectedDriver != null) {
+            Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
+            confirmationAlert.setTitle("Delete Confirmation");
+            confirmationAlert.setHeaderText(null);
+            confirmationAlert.setContentText("Are you sure you want to delete this driver?");
+
+            confirmationAlert.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                    DriverService driverService = new DriverService();
+                    driverService.deleteDriver(selectedDriver);
+                    loadDrivers(); // Refresh the table
+                }
+            });
+        } else {
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+            errorAlert.setTitle("No Selection");
+            errorAlert.setHeaderText(null);
+            errorAlert.setContentText("Please select a driver to delete.");
+            errorAlert.showAndWait();
         }
     }
 }

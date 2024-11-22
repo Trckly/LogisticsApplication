@@ -7,10 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -80,5 +77,36 @@ public class LogistsController {
             alert.showAndWait();
         }
         return null;
+    }
+
+    public void handleDelete() {
+        // Get the selected logist
+        Logist selectedLogist = logistTable.getSelectionModel().getSelectedItem();
+
+        if (selectedLogist != null) {
+            // Confirm deletion
+            Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
+            confirmationAlert.setTitle("Delete Confirmation");
+            confirmationAlert.setHeaderText(null);
+            confirmationAlert.setContentText("Are you sure you want to delete this logist?");
+
+            confirmationAlert.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                    // Delete the logist using the service
+                    LogistService logistService = new LogistService();
+                    logistService.deleteLogist(selectedLogist);
+
+                    // Refresh the table
+                    loadLogists();
+                }
+            });
+        } else {
+            // Show an error if no row is selected
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+            errorAlert.setTitle("No Selection");
+            errorAlert.setHeaderText(null);
+            errorAlert.setContentText("Please select a logist to delete.");
+            errorAlert.showAndWait();
+        }
     }
 }

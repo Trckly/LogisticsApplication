@@ -10,10 +10,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -101,6 +98,35 @@ public class OrdersController {
             alert.setHeaderText(null);
             alert.setContentText("Could not load the add order dialog.\n" + e.getMessage());
             alert.showAndWait();
+        }
+    }
+    public void handleDelete() {
+        // Get the selected order
+        Order selectedOrder = orderTable.getSelectionModel().getSelectedItem();
+
+        if (selectedOrder != null) {
+            // Confirm deletion
+            Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
+            confirmationAlert.setTitle("Delete Confirmation");
+            confirmationAlert.setHeaderText(null);
+            confirmationAlert.setContentText("Are you sure you want to delete this order?");
+
+            confirmationAlert.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                    // Delete the order using the service
+                    orderService.deleteOrder(selectedOrder);
+
+                    // Refresh the table
+                    loadOrders();
+                }
+            });
+        } else {
+            // Show an error if no row is selected
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+            errorAlert.setTitle("No Selection");
+            errorAlert.setHeaderText(null);
+            errorAlert.setContentText("Please select an order to delete.");
+            errorAlert.showAndWait();
         }
     }
 }
