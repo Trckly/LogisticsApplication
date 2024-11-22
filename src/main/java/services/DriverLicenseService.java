@@ -10,7 +10,7 @@ import java.util.List;
 public class DriverLicenseService {
     public List<DriverLicense> getAllDriverLicenses() {
         try (Session session = HibernateUtil.getSession()) {
-            return session.createQuery("from DriverLicense", DriverLicense.class).list();
+            return session.createQuery("from DriverLicense order by id", DriverLicense.class).list();
         }
     }
 

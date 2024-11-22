@@ -11,7 +11,7 @@ public class CargoService {
 
     public List<Cargo> getAllCargo() {
         try (Session session = HibernateUtil.getSession()) {
-            return session.createQuery("from Cargo", Cargo.class).list();
+            return session.createQuery("from Cargo order by denomination", Cargo.class).list();
         }
     }
 

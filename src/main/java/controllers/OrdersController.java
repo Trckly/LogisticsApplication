@@ -99,7 +99,7 @@ public class OrdersController {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText(null);
-            alert.setContentText("Could not load the add order dialog.");
+            alert.setContentText("Could not load the add order dialog.\n" + e.getMessage());
             alert.showAndWait();
         }
     }

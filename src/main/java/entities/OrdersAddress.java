@@ -52,6 +52,14 @@ public class OrdersAddress {
         this.address = address;
     }
 
+    public AddressType getAddressType() {
+        return addressType;
+    }
+
+    public void setAddressType(AddressType addressType) {
+        this.addressType = addressType;
+    }
+
 /*
  TODO [Reverse Engineering] create field to map the 'address_type' column
  Available actions: Define target Java type | Uncomment as is | Remove column mapping

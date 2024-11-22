@@ -11,7 +11,7 @@ public class DriverService {
 
     public List<Driver> getAllDrivers() {
         try (Session session = HibernateUtil.getSession()) {
-            return session.createQuery("from Driver", Driver.class).list();
+            return session.createQuery("from Driver order by firstName", Driver.class).list();
         }
     }
 

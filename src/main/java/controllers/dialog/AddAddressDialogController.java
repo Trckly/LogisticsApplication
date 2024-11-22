@@ -7,6 +7,8 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import services.AddressService;
 
+import java.util.UUID;
+
 public class AddAddressDialogController {
 
     @FXML
@@ -47,6 +49,7 @@ public class AddAddressDialogController {
             }
 
             Address address = new Address();
+            address.setId(UUID.randomUUID());
             address.setProvince(province);
             address.setSettlement(settlement);
             address.setStreet(street);

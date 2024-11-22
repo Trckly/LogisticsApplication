@@ -2,11 +2,13 @@ package entities;
 
 import entities.enums.OrderStatus;
 import jakarta.persistence.*;
-import org.hibernate.annotations.ColumnDefault;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
+import jakarta.persistence.Index;
+import jakarta.persistence.Table;
+import org.hibernate.annotations.*;
+import util.OrderStatusConverter;
 
 import java.math.BigDecimal;
+import java.sql.Types;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.UUID;
@@ -51,6 +53,7 @@ public class Order {
     @Column(name = "status", nullable = false)
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
+
 
     @OneToMany(mappedBy = "order")
     private Set<OrdersAddress> ordersAddresses = new LinkedHashSet<>();

@@ -1,7 +1,8 @@
 package controllers.dialog;
 
-import controllers.dialog.*;
 import entities.*;
+import entities.enums.AddressType;
+import entities.enums.OrderStatus;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -36,6 +37,8 @@ public class AddOrderDialogController {
     private ComboBox<Driver> driverComboBox;
     @FXML
     private ComboBox<Vehicle> vehicleComboBox;
+    @FXML
+    private ComboBox<OrderStatus> statusComboBox;
 
     private OrderService orderService = new OrderService();
     private LogistService logistService = new LogistService();
@@ -44,6 +47,7 @@ public class AddOrderDialogController {
     private DriverService driverService = new DriverService();
     private VehicleService vehicleService = new VehicleService();
     private OrdersAddressService ordersAddressService = new OrdersAddressService();
+    private OrdersCargoService ordersCargoService = new OrdersCargoService();
 
     private Stage dialogStage;
 
@@ -59,11 +63,12 @@ public class AddOrderDialogController {
     private void loadComboBoxData() {
         // Load the data for each ComboBox from the respective services
         logistComboBox.setItems(FXCollections.observableArrayList(logistService.getAllLogists()));
-        initialAddressComboBox.setItems(FXCollections.observableArrayList(ordersAddressService.getInitialAddresses()));
-        destinationAddressComboBox.setItems(FXCollections.observableArrayList(ordersAddressService.getDestinationAddresses()));
+        initialAddressComboBox.setItems(FXCollections.observableArrayList(addressService.getAllAddresses()));
+        destinationAddressComboBox.setItems(FXCollections.observableArrayList(addressService.getAllAddresses()));
         cargoComboBox.setItems(FXCollections.observableArrayList(cargoService.getAllCargo()));
         driverComboBox.setItems(FXCollections.observableArrayList(driverService.getAllDrivers()));
         vehicleComboBox.setItems(FXCollections.observableArrayList(vehicleService.getAllVehicles()));
+        statusComboBox.setItems(FXCollections.observableArrayList(OrderStatus.values()));
     }
 
     @FXML
@@ -76,12 +81,14 @@ public class AddOrderDialogController {
 
             // Get selected items from ComboBoxes
             Logist selectedLogist = logistComboBox.getSelectionModel().getSelectedItem();
-            Address selectedAddress = initialAddressComboBox.getSelectionModel().getSelectedItem();
+            Address initialAddress = initialAddressComboBox.getSelectionModel().getSelectedItem();
+            Address destinationAddress = destinationAddressComboBox.getSelectionModel().getSelectedItem();
             Cargo selectedCargo = cargoComboBox.getSelectionModel().getSelectedItem();
             Driver selectedDriver = driverComboBox.getSelectionModel().getSelectedItem();
             Vehicle selectedVehicle = vehicleComboBox.getSelectionModel().getSelectedItem();
+            OrderStatus selectedStatus = statusComboBox.getSelectionModel().getSelectedItem();
 
-            if (selectedLogist == null || selectedAddress == null || selectedCargo == null || selectedDriver == null || selectedVehicle == null) {
+            if (selectedLogist == null || initialAddress == null || destinationAddress == null || selectedCargo == null || selectedDriver == null || selectedVehicle == null) {
                 showErrorDialog("Missing Selection", "Please select all fields.");
                 return;
             }
@@ -96,14 +103,37 @@ public class AddOrderDialogController {
             newOrder.setLogist(selectedLogist);
             newOrder.setDriver(selectedDriver);
             newOrder.setVehicle(selectedVehicle);
+            newOrder.setStatus(selectedStatus);
 
             // Save the new order using the service
             orderService.addOrder(newOrder);
 
+            OrdersAddress initOrdersAddress = new OrdersAddress();
+            initOrdersAddress.setId(UUID.randomUUID());
+            initOrdersAddress.setOrder(newOrder);
+            initOrdersAddress.setAddress(initialAddress);
+            initOrdersAddress.setAddressType(AddressType.initial);
+
+            OrdersAddress destOrdersAddress = new OrdersAddress();
+            destOrdersAddress.setId(UUID.randomUUID());
+            destOrdersAddress.setOrder(newOrder);
+            destOrdersAddress.setAddress(destinationAddress);
+            destOrdersAddress.setAddressType(AddressType.destination);
+
+            ordersAddressService.addOrderAddress(initOrdersAddress);
+            ordersAddressService.addOrderAddress(destOrdersAddress);
+
+            OrdersCargo ordersCargo = new OrdersCargo();
+            ordersCargo.setId(UUID.randomUUID());
+            ordersCargo.setOrder(newOrder);
+            ordersCargo.setCargo(selectedCargo);
+
+            ordersCargoService.addOrdersCargo(ordersCargo);
+
             // Close the dialog after saving
             dialogStage.close();
         } catch (Exception e) {
-            showErrorDialog("Invalid Input", "Please check the input fields.");
+            showErrorDialog("Invalid Input", "Please check the input fields.\n" + e.getMessage());
         }
     }
 

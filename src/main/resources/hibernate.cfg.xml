@@ -8,6 +8,7 @@
         <property name="hibernate.show_sql">true</property>
         <property name="hibernate.format_sql">true</property>
         <property name="hibernate.hbm2ddl.auto">validate</property>
+        <property name="hibernate.type.pgsql_enum">util.PostgreSQLEnumType</property>
 
         <mapping class="entities.Address"/>
         <mapping class="entities.Cargo"/>

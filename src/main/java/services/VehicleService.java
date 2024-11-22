@@ -11,7 +11,7 @@ public class VehicleService {
 
     public List<Vehicle> getAllVehicles() {
         try (Session session = HibernateUtil.getSession()) {
-            return session.createQuery("from Vehicle", Vehicle.class).list();
+            return session.createQuery("from Vehicle order by licensePlate", Vehicle.class).list();
         }
     }
 

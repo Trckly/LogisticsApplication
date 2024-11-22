@@ -7,6 +7,8 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import services.CargoService;
 
+import java.util.UUID;
+
 public class AddCargoDialogController {
 
     @FXML
@@ -41,6 +43,7 @@ public class AddCargoDialogController {
             }
 
             Cargo cargo = new Cargo();
+            cargo.setId(UUID.randomUUID());
             cargo.setDenomination(name);
             cargo.setWeight(weight);
             cargo.setVolume(volume);
@@ -52,7 +55,7 @@ public class AddCargoDialogController {
         } catch (NumberFormatException e) {
             showErrorDialog("Validation Error", "Weight and Volume must be numeric values.");
         } catch (Exception e) {
-            showErrorDialog("Error", "An error occurred while saving the cargo.");
+            showErrorDialog("Error", "An error occurred while saving the cargo.\n" + e.getMessage());
             e.printStackTrace();
         }
     }

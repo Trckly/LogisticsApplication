@@ -11,6 +11,7 @@ import services.DriverService;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+import java.util.UUID;
 
 public class AddDriverDialogController {
 
@@ -60,6 +61,7 @@ public class AddDriverDialogController {
             }
 
             Driver driver = new Driver();
+            driver.setId(UUID.randomUUID());
             driver.setFirstName(firstName);
             driver.setLastName(lastName);
             driver.setSurname(surname);
@@ -73,8 +75,8 @@ public class AddDriverDialogController {
             driverLicense.setDriver(driver);
             driver.setDrivingLicense(driverLicense);
 
-            driverService.addDriver(driver);
             driverLicenseService.addDriverLicense(driverLicense);
+            driverService.addDriver(driver);
             createdDriver = driver;
 
             dialogStage.close();

@@ -11,7 +11,7 @@ public class LogistService {
 
     public List<Logist> getAllLogists() {
         try (Session session = HibernateUtil.getSession()) {
-            return session.createQuery("from Logist", Logist.class).list();
+            return session.createQuery("from Logist order by firstName", Logist.class).list();
         }
     }
 

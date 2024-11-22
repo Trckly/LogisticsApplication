@@ -4,7 +4,7 @@
 <?import javafx.geometry.Pos?>
 <?import javafx.collections.FXCollections?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="controllers.AddOrderDialogController" prefWidth="420" prefHeight="500">
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="controllers.dialog.AddOrderDialogController" prefWidth="420" prefHeight="500">
     <VBox spacing="10" alignment="CENTER" layoutX="50" layoutY="50" prefWidth="300">
         <!-- Text fields -->
         <TextField fx:id="clientNameField" promptText="Client Company Name" maxWidth="300"/>
@@ -45,6 +45,11 @@
         <HBox spacing="10" alignment="CENTER">
             <ComboBox fx:id="vehicleComboBox" promptText="Select Vehicle" prefWidth="235"/>
             <Button text="Create" onAction="#createVehicle"/>
+        </HBox>
+
+        <!-- OrderStatus ComboBox with Create Button -->
+        <HBox spacing="10" alignment="CENTER">
+            <ComboBox fx:id="statusComboBox" promptText="Select Status" prefWidth="300"/>
         </HBox>
 
         <!-- Save and Cancel Buttons -->

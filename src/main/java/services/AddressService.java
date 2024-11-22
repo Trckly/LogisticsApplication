@@ -11,7 +11,7 @@ public class AddressService {
 
     public List<Address> getAllAddresses() {
         try (Session session = HibernateUtil.getSession()) {
-            return session.createQuery("from Address", Address.class).list();
+            return session.createQuery("from Address order by province", Address.class).list();
         }
     }
 
