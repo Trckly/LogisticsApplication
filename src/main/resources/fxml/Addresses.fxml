@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="10" xmlns:fx="http://javafx.com/fxml" fx:controller="controllers.AddressesController">
+    <HBox spacing="10">
+        <TextField fx:id="searchField" promptText="Search by street"/>
+        <Button text="Search" onAction="#handleSearch"/>
+        <Button text="Add New" onAction="#showAddAddress"/>
+    </HBox>
+    <TableView fx:id="addressTable" prefHeight="475">
+        <columns>
+            <TableColumn text="ID" fx:id="idColumn"/>
+            <TableColumn text="Province" fx:id="provinceColumn"/>
+            <TableColumn text="Settlement" fx:id="settlementColumn"/>
+            <TableColumn text="Street" fx:id="streetColumn"/>
+            <TableColumn text="Street Number" fx:id="streetNumberColumn"/>
+            <TableColumn text="Company Name" fx:id="companyColumn"/>
+        </columns>
+    </TableView>
+</VBox>

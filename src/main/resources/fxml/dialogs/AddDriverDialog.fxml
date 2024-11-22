@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="controllers.dialog.AddDriverDialogController" prefWidth="420" prefHeight="400">
+    <VBox spacing="10" alignment="CENTER" layoutX="50" layoutY="50" prefWidth="300">
+        <TextField fx:id="firstNameField" promptText="First Name" prefWidth="300"/>
+        <TextField fx:id="lastNameField" promptText="Last Name" prefWidth="300"/>
+        <TextField fx:id="surnameField" promptText="Middle Name" prefWidth="300"/>
+        <TextField fx:id="phoneNumberField" promptText="Phone Number" prefWidth="300"/>
+        <TextField fx:id="licenseNumberField" promptText="Driver's License Number" prefWidth="300"/>
+        <TextField fx:id="issuingAuthorityField" promptText="Issuing Authority" prefWidth="300"/>
+        <TextField fx:id="issueDateField" promptText="Date of Issue (YYYY-MM-DD)" prefWidth="300"/>
+
+        <HBox spacing="10" alignment="CENTER">
+            <Button text="Cancel" onAction="#handleCancel" prefWidth="150" style="-fx-background-color: rgba(238,0,0,0.4)"/>
+            <Button text="Save" onAction="#handleSave" prefWidth="150" style="-fx-background-color: rgba(0,238,0,0.4)"/>
+        </HBox>
+    </VBox>
+</AnchorPane>

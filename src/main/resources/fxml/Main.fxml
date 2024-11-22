@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="controllers.MainController">
+    <top>
+        <MenuBar>
+            <Menu text="File">
+                <MenuItem text="Exit" onAction="#handleExit"/>
+            </Menu>
+            <Menu text="View">
+                <MenuItem text="Addresses" onAction="#showAddresses"/>
+                <MenuItem text="Orders" onAction="#showOrders"/>
+                <MenuItem text="Cargo" onAction="#showCargo"/>
+                <MenuItem text="Vehicles" onAction="#showVehicles"/>
+                <MenuItem text="Logists" onAction="#showLogists"/>
+                <MenuItem text="Drivers" onAction="#showDrivers"/>
+                <MenuItem text="DriverLicenses" onAction="#showDriverLicenses"/>
+            </Menu>
+        </MenuBar>
+    </top>
+    <center>
+        <TabPane fx:id="tabPane">
+            <Tab text="Welcome" closable="false">
+                <Label text="Welcome to the Logistics Database Application"/>
+            </Tab>
+        </TabPane>
+    </center>
+</BorderPane>

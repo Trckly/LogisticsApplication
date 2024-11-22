@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="10" xmlns:fx="http://javafx.com/fxml" fx:controller="controllers.DriverLicensesController">
+    <HBox spacing="10">
+        <TextField fx:id="searchField" promptText="Search by license number"/>
+        <Button text="Search" onAction="#handleSearch"/>
+    </HBox>
+    <TableView fx:id="licenseTable" prefHeight="400">
+        <columns>
+            <TableColumn text="ID" fx:id="idColumn"/>
+            <TableColumn text="Issuing Authority" fx:id="issuingAuthorityColumn"/>
+            <TableColumn text="Date of Issue" fx:id="dateOfIssueColumn"/>
+        </columns>
+    </TableView>
+</VBox>

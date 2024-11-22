@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="10" xmlns:fx="http://javafx.com/fxml" fx:controller="controllers.OrdersController">
+    <HBox spacing="10">
+        <TextField fx:id="searchField" promptText="Search by loading address"/>
+        <Button text="Search" onAction="#handleSearch"/>
+        <Button text="Add New" onAction="#showAddOrder"/>
+    </HBox>
+    <TableView fx:id="orderTable" prefHeight="400">
+        <columns>
+            <TableColumn text="ID" fx:id="idColumn"/>
+            <TableColumn text="Client" fx:id="clientColumn"/>
+            <TableColumn text="Carrier" fx:id="carrierColumn"/>
+            <TableColumn text="Logist" fx:id="logistColumn"/>
+            <TableColumn text="Driver" fx:id="driverColumn"/>
+            <TableColumn text="Vehicle" fx:id="vehicleColumn"/>
+            <TableColumn text="Client" fx:id="clientPriceColumn"/>
+            <TableColumn text="Vehicle" fx:id="carrierPriceColumn"/>
+            <TableColumn text="Status" fx:id="statusColumn"/>
+        </columns>
+    </TableView>
+</VBox>

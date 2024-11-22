@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="10" xmlns:fx="http://javafx.com/fxml" fx:controller="controllers.DriversController">
+    <HBox spacing="10">
+        <TextField fx:id="searchField" promptText="Search by driver name"/>
+        <Button text="Search" onAction="#handleSearch"/>
+        <Button text="Add New" onAction="#showAddDriver"/>
+    </HBox>
+    <TableView fx:id="driverTable" prefHeight="400">
+        <columns>
+            <TableColumn text="ID" fx:id="idColumn"/>
+            <TableColumn text="Name" fx:id="nameColumn"/>
+            <TableColumn text="Phone Number" fx:id="phoneNumberColumn"/>
+            <TableColumn text="Driver's License" fx:id="licenseColumn"/>
+        </columns>
+    </TableView>
+</VBox>

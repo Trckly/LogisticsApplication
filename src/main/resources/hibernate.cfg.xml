@@ -1,0 +1,22 @@
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/LogisticsDatabase</property>
+        <property name="hibernate.connection.username">postgres</property>
+        <property name="hibernate.connection.password">embryo</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.format_sql">true</property>
+        <property name="hibernate.hbm2ddl.auto">validate</property>
+
+        <mapping class="entities.Address"/>
+        <mapping class="entities.Cargo"/>
+        <mapping class="entities.Driver"/>
+        <mapping class="entities.DriverLicense"/>
+        <mapping class="entities.Logist"/>
+        <mapping class="entities.Order"/>
+        <mapping class="entities.Vehicle"/>
+        <mapping class="entities.OrdersAddress"/>
+        <mapping class="entities.OrdersCargo"/>
+    </session-factory>
+</hibernate-configuration>

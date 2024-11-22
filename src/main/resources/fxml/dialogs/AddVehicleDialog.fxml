@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="controllers.dialog.AddVehicleDialogController" prefWidth="420" prefHeight="400">
+    <VBox spacing="10" alignment="CENTER" layoutX="50" layoutY="50" prefWidth="300">
+        <TextField fx:id="licensePlateField" promptText="License Plate" prefWidth="300"/>
+        <TextField fx:id="modelField" promptText="Model" prefWidth="300"/>
+        <TextField fx:id="productionYearField" promptText="Production Year" prefWidth="300"/>
+        <TextField fx:id="carryingCapacityField" promptText="Carrying Capacity" prefWidth="300"/>
+
+        <HBox spacing="10" alignment="CENTER">
+            <Button text="Cancel" onAction="#handleCancel" prefWidth="150" style="-fx-background-color: rgba(238,0,0,0.4)"/>
+            <Button text="Save" onAction="#handleSave" prefWidth="150" style="-fx-background-color: rgba(0,238,0,0.4)"/>
+        </HBox>
+    </VBox>
+</AnchorPane>

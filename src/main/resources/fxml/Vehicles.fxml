@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="10" xmlns:fx="http://javafx.com/fxml" fx:controller="controllers.VehiclesController">
+    <HBox spacing="10">
+        <TextField fx:id="searchField" promptText="Search by license plate"/>
+        <Button text="Search" onAction="#handleSearch"/>
+        <Button text="Add New" onAction="#showAddVehicle"/>
+    </HBox>
+    <TableView fx:id="vehicleTable" prefHeight="400">
+        <columns>
+            <TableColumn text="ID" fx:id="idColumn"/>
+            <TableColumn text="License Plate" fx:id="licensePlateColumn"/>
+            <TableColumn text="Model" fx:id="modelColumn"/>
+            <TableColumn text="Year" fx:id="productionYearColumn"/>
+            <TableColumn text="Load Capacity" fx:id="carryingCapacityColumn"/>
+        </columns>
+    </TableView>
+</VBox>

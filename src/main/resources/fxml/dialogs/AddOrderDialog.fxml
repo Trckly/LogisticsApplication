@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Pos?>
+<?import javafx.collections.FXCollections?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="controllers.AddOrderDialogController" prefWidth="420" prefHeight="500">
+    <VBox spacing="10" alignment="CENTER" layoutX="50" layoutY="50" prefWidth="300">
+        <!-- Text fields -->
+        <TextField fx:id="clientNameField" promptText="Client Company Name" maxWidth="300"/>
+        <TextField fx:id="carrierNameField" promptText="Carrier Company Name" maxWidth="300"/>
+        <TextField fx:id="clientPriceField" promptText="Client Price" maxWidth="300"/>
+        <TextField fx:id="carrierPriceField" promptText="Carrier Price" maxWidth="300"/>
+
+        <!-- Logist ComboBox with Create Button -->
+        <HBox spacing="10" alignment="CENTER">
+            <ComboBox fx:id="logistComboBox" promptText="Select Logist" prefWidth="235"/>
+            <Button text="Create" onAction="#createLogist"/>
+        </HBox>
+
+        <!-- Address ComboBox with Create Button -->
+        <HBox spacing="10" alignment="CENTER">
+            <ComboBox fx:id="initialAddressComboBox" promptText="Select Address" prefWidth="235"/>
+            <Button text="Create" onAction="#createAddress"/>
+        </HBox>
+        <!-- Address ComboBox with Create Button -->
+        <HBox spacing="10" alignment="CENTER">
+            <ComboBox fx:id="destinationAddressComboBox" promptText="Select Address" prefWidth="235"/>
+            <Button text="Create" onAction="#createAddress"/>
+        </HBox>
+
+        <!-- Cargo ComboBox with Create Button -->
+        <HBox spacing="10" alignment="CENTER">
+            <ComboBox fx:id="cargoComboBox" promptText="Select Cargo" prefWidth="235"/>
+            <Button text="Create" onAction="#createCargo"/>
+        </HBox>
+
+        <!-- Driver ComboBox with Create Button -->
+        <HBox spacing="10" alignment="CENTER">
+            <ComboBox fx:id="driverComboBox" promptText="Select Driver" prefWidth="235"/>
+            <Button text="Create" onAction="#createDriver"/>
+        </HBox>
+
+        <!-- Vehicle ComboBox with Create Button -->
+        <HBox spacing="10" alignment="CENTER">
+            <ComboBox fx:id="vehicleComboBox" promptText="Select Vehicle" prefWidth="235"/>
+            <Button text="Create" onAction="#createVehicle"/>
+        </HBox>
+
+        <!-- Save and Cancel Buttons -->
+        <HBox spacing="10" alignment="CENTER">
+            <Button text="Cancel" onAction="#handleCancel" prefWidth="150" style="-fx-background-color: rgba(238,0,0,0.4)"/>
+            <Button text="Save" onAction="#handleSave" prefWidth="150" style="-fx-background-color: rgba(0,238,0,0.4)"/>
+        </HBox>
+    </VBox>
+</AnchorPane>
